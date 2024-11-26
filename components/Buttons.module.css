@@ -1,0 +1,25 @@
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.button {
+    width: 300px;
+    padding: 70px;
+    border-radius: 10px;
+    color: #000;
+    font-size: 23px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    left: 40px;
+}
+
+.createRoom {
+    background-color: #f4c542;
+}
+
+.searchRoom {
+    background-color: #56a8ff;
+}
