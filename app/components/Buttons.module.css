@@ -1,19 +1,20 @@
 .buttons {
     display: flex;
-    gap: 20px;
+    gap: 140px;
 }
 
 .button {
-    width: 300px;
-    padding: 70px;
+    width: 600px;
+    padding: 150px;
     border-radius: 10px;
     color: #000;
-    font-size: 23px;
+    font-size: 35px;
     font-weight: bold;
     cursor: pointer;
     border: none;
     position: relative;
-    left: 40px;
+    left: 210px;
+    top: 500px;
 }
 
 .createRoom {
