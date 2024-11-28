@@ -10,8 +10,9 @@
     flex-direction: column;
     gap: 70px;
     color: black;
-    transform: translateX(-100px);
-    transform: translateY(-300px);
+    position: fixed;
+    left: 0px;
+    bottom: 400px;
 }
 
 .sidebar .item {
