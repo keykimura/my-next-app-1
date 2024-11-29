@@ -14,9 +14,6 @@ export default function Home() {
         <Header />
         <Profile />
         <Buttons />
-        <Footer />
-
-        
       </div>
    
   );
