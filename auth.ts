@@ -2,16 +2,15 @@ import NextAuth, { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 
 export const config: NextAuthConfig = {
-    providers: [Google({
-    clientId: process.env.Auth_GOOGLE_ID, 
-    clientSecret: process.env.AUTH_GOOGLE_SECRET
-    })],
-    basePath: "api/auth",
+    providers: [Google],
+    basePath: "/api/auth",
     callbacks: {
         authorized({request, auth}){
+            
+            /* 認証後の処理 */
             try{
                 const { pathname }  = request.nextUrl;
-                if(pathname === "/") return !!auth;
+                if(pathname === "/createRoom") return !!auth;
                 return true;
             } catch(err) {
                 console.log(err);
@@ -24,4 +23,4 @@ export const config: NextAuthConfig = {
     },
 };
 
-export const {handlers, auth, signIn, signOut} = NextAuth(config);
+export const {handlers, auth, signIn, signOut} = NextAuth(config); /**/ 
