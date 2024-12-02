@@ -2,6 +2,8 @@
   max-width: 800px;
   margin: 0 auto;
   text-align: left;
+  position: relative;
+  top: 170px;
 }
 
 .header {
@@ -18,14 +20,18 @@
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
+  font-size: 25px;
   cursor: pointer;
+  width: 150px;
+  padding: 20px;
 }
 
 .profileCard {
   background-color: white;
   color: black;
-  font-size: 25px;
-  padding: 200px;
+  font-size: 27px;
+  padding: 150px;
+  width: 600px;
   border-radius: 10px;
   display: flex;
   align-items: flex-start;
