@@ -11,7 +11,7 @@
   }
   
   .friendList {
-    display: grid;
+    display: flexbox;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
