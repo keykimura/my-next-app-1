@@ -4,7 +4,8 @@ import UserButton from "./user-button";
 
 const Header: React.FC = () => {
   return (
-  <div className={styles.header}>ホーム🏠
+  <div className={styles.header}>
+    <UserButton/>
   </div>
   )
 

@@ -2,7 +2,11 @@ import NextAuth, { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 
 export const config: NextAuthConfig = {
-    providers: [Google],
+    providers: [Google({
+        clientId: process.env.AUTH_GOOGLE_ID,
+        clientSecret: process.env.AUTH_GOOGLE_SECRET,
+
+})],
     basePath: "/api/auth",
     callbacks: {
         authorized({request, auth}){

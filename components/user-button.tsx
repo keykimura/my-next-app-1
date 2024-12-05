@@ -12,7 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export default async function UserButton() {
   const session = await auth();
-  if (!session?.user) return <SignIn />;
+  if (!session?.user) return <SignIn provider="google"/>;
 
   return (
     <div className="flex gap-2 items-center">
