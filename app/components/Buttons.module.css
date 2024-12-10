@@ -3,9 +3,9 @@
     gap: 140px;
 }
 
-.button {
-    width: 600px;
-    padding: 150px;
+.doubleButton {
+    width: 400px;
+    padding: 80px;
     border-radius: 10px;
     color: #000;
     font-size: 35px;
@@ -13,7 +13,7 @@
     cursor: pointer;
     border: none;
     position: relative;
-    left: 210px;
+    left: 220px;
     top: 500px;
 }
 
