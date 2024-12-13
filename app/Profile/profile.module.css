@@ -12,6 +12,7 @@
   align-items: center;
   margin-bottom: 1rem;
   color: white;
+  font-size: 30px;
 }
 
 .editButton {
@@ -25,15 +26,15 @@
   width: 150px;
   padding: 20px;
   position: relative;
-  left: 100px;
+  left: 0px;
 }
 
 .profileCard {
   background-color: white;
   color: black;
   font-size: 27px;
-  padding: 150px;
-  width: 600px;
+  padding: 70px;
+  width: 800px;
   border-radius: 10px;
   display: flex;
   align-items: flex-start;

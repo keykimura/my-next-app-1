@@ -4,8 +4,8 @@
 }
 
 .doubleButton {
-    width: 400px;
-    padding: 80px;
+    width: 430px;
+    padding: 90px;
     border-radius: 10px;
     color: #000;
     font-size: 35px;
@@ -13,7 +13,7 @@
     cursor: pointer;
     border: none;
     position: relative;
-    left: 220px;
+    left: 110px;
     top: 500px;
 }
 
