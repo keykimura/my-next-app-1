@@ -1,9 +1,9 @@
 // app/layout.tsx
 import "./globals.css";
-import Sidebar from "../components/Sidebar";
-import Header from "@/components/Header";
-import Profile from "@/components/Profile";
-import Buttons from "@/components/Buttons";
+import Sidebar from "./components/Sidebar";
+import Header from "@/app/components/Header";
+import Profile from "@/app/components/Profile";
+import Buttons from "@/app/components/Buttons";
 
 export const metadata = {
   title: "Home",
