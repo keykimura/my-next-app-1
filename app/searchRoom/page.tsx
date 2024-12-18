@@ -1,4 +1,5 @@
 import styles from './Search.module.css';
+import Link from 'next/link'
 
 export default function RoomsPage() {
   const rooms = [
@@ -21,7 +22,7 @@ export default function RoomsPage() {
       <ul className={styles.roomList}>
         {rooms.map((room, index) => (
           <li key={index} className={styles.roomItem}>
-            <span className={styles.roomName}>{room.name}</span>
+            <Link href="/Room"><button className={styles.roomName}>{room.name}</button></Link>
             <span className={styles.roomCount}>{room.count}</span>
           </li>
         ))}
