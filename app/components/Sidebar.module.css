@@ -1,20 +1,19 @@
 .sidebar {
     background-color: #3bde4b;
-    width: 220px;
-    padding: 70px;
+    width: 390px;
+    padding: 80px;
     margin-left:0;
     border: 5px solid;
     border-radius: 15px;
-    border-color: hsl(200, 100%, 50%);
+    border-color: #00a2ff;
     display: flex;
     flex-direction: column;
-    gap: 140px;
+    gap: 130px;
     color: black;
     position: fixed;
-    left: 20px;
-    bottom: 50px;
+    left: 30px;
+    bottom: 60px;
 }
-
 .sidebar .item {
     display: flex;
     align-items: center;

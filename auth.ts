@@ -14,7 +14,7 @@ export const config: NextAuthConfig = {
             /* 認証後の処理 */
             try{
                 const { pathname }  = request.nextUrl;
-                if(pathname === "/createRoom") return !!auth;
+                if(pathname === "/") return !!auth;
                 return true;
             } catch(err) {
                 console.log(err);
