@@ -1,4 +1,10 @@
 .header {
+    font-size: 50px;
+    color: #f54a70;
+    display: flex;
+    font-weight: bold;
+    align-items: center;
     position: relative;
-    bottom: 50px1;
+    top: -30px;
+    left: 30px;
 }

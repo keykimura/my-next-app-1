@@ -1,0 +1,71 @@
+.searchPage {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    color: black;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    top: 200px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .searchBar {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .searchInput {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .genreButton,
+  .addButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #2ebf51;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .genreButton:hover,
+  .addButton:hover {
+    background-color: #28a745;
+  }
+  
+  .roomList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .roomItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+  }
+  
+  .roomName {
+    font-weight: bold;
+  }
+  
+  .roomCount {
+    color: #666;
+  }
+  

@@ -1,11 +1,16 @@
 // components/Buttons.tsx
 import styles from "./Buttons.module.css";
+import Link from 'next/link'
 
 const Buttons: React.FC = () => {
   return (
     <div className={styles.buttons}>
+      <Link href="/createRoom">
       <button className={`${styles.doubleButton} ${styles.createRoom}`}>ルーム作成 ✏️</button>
-      <button className={`${styles.doubleButton} ${styles.searchRoom}`}>ルーム探索 🔍</button>
+      </Link>
+      <Link href="/SearchRoom">
+      <button className={`${styles.doubleButton} ${styles.searchRoom}`}>ルーム検索 🔍</button>
+      </Link>
     </div>
   );
 };
