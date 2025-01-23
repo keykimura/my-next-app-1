@@ -1,0 +1,110 @@
+.roomPage {
+    text-align: center;
+    color: white;
+  }
+  
+  .roomTitle {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .nowPlaying {
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    width: 1950px;
+    position: relative;
+    left: 100px;
+  }
+  
+  .trackInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .historyButton {
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .chatSection {
+    background-color: #ffffff;
+    color: black;
+    padding: 1rem;
+    border-radius: 5px;
+    width: 1300px;
+    position: relative;
+    left: 700px;
+    top: 200px;
+  }
+  
+  .chatMessages {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+  
+  .time {
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+  }
+  
+  .bubble {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    display: inline-block;
+  }
+  
+  .bubble.gray {
+    background-color: #d3d3d3;
+  }
+  
+  .bubble.blue {
+    background-color: #add8e6;
+  }
+  
+  .bubble.red {
+    background-color: #f08080;
+  }
+  
+  .bubble.orange {
+    background-color: #ffa500;
+  }
+  
+  .chatInput {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .chatInput input {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+  }
+  
+  .chatInput button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  

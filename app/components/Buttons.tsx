@@ -8,7 +8,7 @@ const Buttons: React.FC = () => {
       <Link href="/createRoom">
       <button className={`${styles.doubleButton} ${styles.createRoom}`}>ルーム作成 ✏️</button>
       </Link>
-      <Link href="/SearchRoom">
+      <Link href="/searchRoom">
       <button className={`${styles.doubleButton} ${styles.searchRoom}`}>ルーム検索 🔍</button>
       </Link>
     </div>
