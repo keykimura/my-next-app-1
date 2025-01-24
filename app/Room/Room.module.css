@@ -1,14 +1,14 @@
 .roomPage {
     text-align: center;
     color: white;
-  }
+}
   
-  .roomTitle {
+.roomTitle {
     font-size: 2rem;
     margin-bottom: 1rem;
-  }
+}
   
-  .nowPlaying {
+.nowPlaying {
     background-color: white;
     color: black;
     padding: 1rem;
@@ -17,24 +17,61 @@
     width: 1950px;
     float: right;
     clear: both;
-  }
+}
   
-  .trackInfo {
+.trackInfo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .historyButton {
+}
+
+.videoContainer {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.linkSubmitForm {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.linkSubmitForm form {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+    max-width: 600px;
+}
+
+.linkInput {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.submitButton, .nextButton {
     background-color: #007bff;
     color: white;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
+    font-size: 1rem;
+}
+
+.nextButton {
+    background-color: #28a745;
+}
+
+.submitButton:hover, .nextButton:hover {
+    opacity: 0.9;
+}
   
-  .chatSection {
+.chatSection {
     background-color: #ffffff;
     color: black;
     padding: 1rem;
@@ -42,67 +79,66 @@
     width: 1950px;
     float: right;
     clear: both;
-  }
+}
   
-  .chatMessages {
+.chatMessages {
     max-height: 200px;
     overflow-y: auto;
     margin-bottom: 1rem;
-  }
+}
   
-  .message {
+.message {
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
-  }
+}
   
-  .time {
+.time {
     font-size: 0.8rem;
     margin-right: 0.5rem;
-  }
+}
   
-  .bubble {
+.bubble {
     padding: 0.5rem 1rem;
     border-radius: 10px;
     display: inline-block;
-  }
+}
   
-  .bubble.gray {
+.bubble.gray {
     background-color: #d3d3d3;
-  }
+}
   
-  .bubble.blue {
+.bubble.blue {
     background-color: #add8e6;
-  }
+}
   
-  .bubble.red {
+.bubble.red {
     background-color: #f08080;
-  }
+}
   
-  .bubble.orange {
+.bubble.orange {
     background-color: #ffa500;
-  }
+}
   
-  .chatInput {
+.chatInput {
     display: flex;
     justify-content: space-between;
-  }
+}
   
-  .chatInput input {
+.chatInput input {
     flex: 1;
     padding: 0.5rem;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-right: 0.5rem;
-  }
+}
   
-  .chatInput button {
+.chatInput button {
     background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 0.5rem 1rem;
     cursor: pointer;
-  }
-  
+}

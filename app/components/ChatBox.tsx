@@ -1,53 +1,54 @@
-"use client";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Socket } from "socket.io-client";
+import { Socket } from 'socket.io-client';
+import { useState } from 'react';
 import styles from './ChatBox.module.css';
 
-
+interface ChatMessage {
+    text: string;
+    timestamp: string;
+    userId: string;
+}
 
 interface ChatBoxProps {
-    socket : Socket;
-    //onLeaveRoom: () => void;
-  }
-  
-  export default function ChatBox({ socket}: ChatBoxProps) {
-    
-    const [messages, setMessages] = useState<string[]>([]);
-    const [message, setMessage] = useState("");
-  
-    useEffect(() => {
-        socket.on("message", (msg: string) => {
-            setMessages((prev) => [...prev, msg]);
-        });
-    }, [socket]);
-  
-    const sendMessage = () => {
-        socket.emit("message", {  message });
-        setMessages((prev) => [...prev, `自分: ${message}`]);
-        setMessage("");
+    socket: Socket;
+    messages: ChatMessage[];
+    onSendMessage: (message: string) => void;
+    currentRoom: string | null;
+}
+
+export default function ChatBox({ socket, messages, onSendMessage, currentRoom }: ChatBoxProps) {
+    const [messageInput, setMessageInput] = useState("");
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (messageInput.trim()) {
+            onSendMessage(messageInput);
+            setMessageInput("");
+        }
     };
 
-    return(
-    <div className={styles.chatSection}>
-        <h2>チャット</h2>
-        <div className={styles.chatBox}>
-          {messages.map((msg, i) => (
-            <div key={i} className={styles.message}>
-              {msg}
+    return (
+        <div className={styles.chatSection}>
+            <div className={styles.chatMessages}>
+                {messages.map((msg, index) => (
+                    <div key={index} className={styles.message}>
+                        <span className={styles.time}>{msg.timestamp}</span>
+                        <div className={`${styles.bubble} ${
+                            msg.userId === socket.id ? styles.blue : styles.gray
+                        }`}>
+                            {msg.text}
+                        </div>
+                    </div>
+                ))}
             </div>
-          ))}
+            <form onSubmit={handleSubmit} className={styles.chatInput}>
+                <input
+                    type="text"
+                    value={messageInput}
+                    onChange={(e) => setMessageInput(e.target.value)}
+                    placeholder="メッセージを入力"
+                />
+                <button type="submit">送信</button>
+            </form>
         </div>
-        <div className={styles.chatInput}>
-          <input
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            ></input>
-          <button onClick={sendMessage}>送信</button>
-          {//<button onClick={onLeaveRoom}>退出</button>
-          }
-        </div>
-        </div>
-    )
-        }
+    );
+}
