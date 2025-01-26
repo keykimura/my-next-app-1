@@ -1,14 +1,12 @@
 .profile {
     background-color: #fff;
-    padding: 100px;
+    padding: 40px;
     border-radius: 15px;
-    width: 1200px;
+    width: 100%;
     text-align: left;
     color: #333;
-    font-size: 30px;
-    position: fixed;
-    left: 700px;
-    top: 200px;
+    font-size: 18px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .profile-image {
