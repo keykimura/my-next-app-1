@@ -22,11 +22,12 @@ export default function CreateRoomPage() {
         return;
       }
 
-      const response = await fetch('/api/rooms/create', {
+      const response = await fetch('http://localhost:3001/api/rooms/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(formData),
       });
 

@@ -9,7 +9,6 @@ const Sidebar: React.FC = () => {
       <Link href="/"><div className={styles.item}>🏠 ホーム</div></Link>
       <div className={styles.item}>⚙️ 設定</div>
       <Link href="Profile"><div className={styles.item}>👤 プロフィール</div></Link>
-      <div className={styles.item}>🎵 リスト</div>
       <div className={styles.item}>✉️ メッセージ</div>
     </div>
   );

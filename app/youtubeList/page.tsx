@@ -143,15 +143,28 @@ export default function YoutubeListPage() {
                     <ul className={styles.videoList}>
                         {youtubeLinks.map((link) => (
                             <li key={link.id} className={styles.videoItem}>
-                                <span className={styles.videoTitle}>
-                                    {link.title || `Video ${link.videoId}`}
-                                </span>
-                                <button 
-                                    className={styles.removeButton}
-                                    onClick={() => handleDeleteLink(link.id)}
-                                >
-                                    削除
-                                </button>
+                                <div className={styles.videoContent}>
+                                    <iframe
+                                        width="160"
+                                        height="90"
+                                        src={`https://www.youtube.com/embed/${link.videoId}?origin=${window.location.origin}`}
+                                        title={link.title}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen
+                                    />
+                                    <div className={styles.videoInfo}>
+                                        <span className={styles.videoTitle}>
+                                            {link.title || link.videoId}
+                                        </span>
+                                        <button 
+                                            className={styles.removeButton}
+                                            onClick={() => handleDeleteLink(link.id)}
+                                        >
+                                            削除
+                                        </button>
+                                    </div>
+                                </div>
                             </li>
                         ))}
                     </ul>

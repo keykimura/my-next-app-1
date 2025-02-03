@@ -1,7 +1,18 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
+import { compare } from "bcrypt";
 import { prisma } from "@/lib/prisma";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      email: string;
+      name: string;
+    };
+  }
+}
 
 export const {
   handlers: { GET, POST },
@@ -9,7 +20,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET || "fallback-secret-do-not-use-in-production",
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
@@ -22,24 +33,24 @@ export const {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
+        
+        const email = credentials.email as string;
+        const password = credentials.password as string;
 
         try {
-          const response = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/verify-credentials`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              email: credentials.email,
-              password: credentials.password,
-            }),
+          const user = await prisma.user.findUnique({
+            where: { email }
           });
 
-          const data = await response.json();
-          if (!response.ok) return null;
+          if (!user) return null;
+
+          const isPasswordValid = await compare(password, user.password);
+          if (!isPasswordValid) return null;
 
           return {
-            id: data.user.id,
-            email: data.user.email,
-            name: data.user.name,
+            id: user.id,
+            email: user.email,
+            name: user.name,
           };
         } catch (error) {
           console.error("Authentication error:", error);

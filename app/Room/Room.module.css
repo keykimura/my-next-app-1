@@ -1,189 +1,107 @@
 .roomPage {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    @apply p-8 max-w-[1400px] mx-auto bg-white min-h-screen;
 }
 
 .roomTitle {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    color: #333;
+    @apply text-center mb-6 text-3xl font-bold text-gray-900;
 }
 
 .roomInfo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
+    @apply flex justify-between items-center mb-6 p-4 bg-white rounded-xl shadow-md border-2 border-gray-900;
 }
 
 .genre {
-    font-size: 1.1rem;
-    color: #666;
+    @apply text-lg text-gray-900 font-medium;
 }
 
 .youtubeListLink {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.youtubeListLink:hover {
-    background-color: #0056b3;
+    @apply px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg transition-all hover:bg-blue-700 hover:shadow-md;
 }
 
 .mainContent {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-    margin-top: 20px;
-    min-height: calc(100vh - 200px);
+    @apply grid grid-cols-[2fr_1fr] gap-6 mt-6 min-h-[calc(100vh-200px)];
 }
 
 .videoSection {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    @apply bg-white p-6 rounded-xl shadow-md border-2 border-gray-900;
 }
 
 .videoContainer {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #000;
-    border-radius: 8px;
-    overflow: hidden;
-    min-height: 390px;
-    position: relative;
+    @apply my-6 flex justify-center items-center bg-black rounded-xl overflow-hidden min-h-[390px] relative;
 }
 
 .videoWrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    @apply relative w-full h-full;
 }
 
 .youtubePlayer {
-    width: 100%;
-    height: 100%;
+    @apply w-full h-full;
 }
 
 .noVideo {
-    color: #fff;
-    text-align: center;
-    padding: 40px;
+    @apply text-white text-center p-10;
 }
 
 .noVideo p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+    @apply mb-5 text-lg;
 }
 
 .historyContainer {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
+    @apply mt-6 p-5 bg-white rounded-xl border-2 border-gray-900;
 }
 
 .historySection {
-    margin-bottom: 20px;
+    @apply mb-6;
 }
 
 .historySection h3 {
-    color: #333;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
+    @apply text-gray-900 mb-4 text-lg font-semibold;
 }
 
 .history {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 300px;
-    overflow-y: auto;
+    @apply list-none p-0 m-0 max-h-[300px] overflow-y-auto;
 }
 
 .historyItem {
-    padding: 8px 12px;
-    margin: 4px 0;
-    background-color: #ffffff;
-    border-radius: 4px;
-    transition: all 0.3s;
-    border: 1px solid #e0e0e0;
+    @apply p-4 my-3 bg-white rounded-lg transition-all border-2 border-gray-900 hover:border-blue-600 hover:shadow-md;
 }
 
-.historyItem:hover {
-    background-color: #f5f5f5;
-    border-color: #1db954;
+.historyVideo {
+    @apply flex items-center gap-4;
+}
+
+.historyVideo iframe {
+    @apply rounded-lg shadow-sm border border-gray-900;
 }
 
 .videoLink {
-    color: #333;
-    text-decoration: none;
-    display: block;
-    transition: color 0.3s;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.videoLink:hover {
-    color: #1db954;
+    @apply text-gray-900 no-underline block transition-colors hover:text-blue-600 truncate;
 }
 
 .emptyHistory {
-    color: #666;
-    text-align: center;
-    padding: 10px;
+    @apply text-gray-600 text-center py-4 italic;
 }
 
 .userList {
-    margin-top: 20px;
+    @apply mt-6;
 }
 
 .userList h3 {
-    color: #333;
-    margin-bottom: 12px;
-    font-size: 1rem;
+    @apply text-gray-900 mb-3 text-lg font-semibold;
 }
 
 .userList ul {
-    list-style: none;
-    padding: 0;
+    @apply list-none p-0;
 }
 
 .userList li {
-    padding: 8px 12px;
-    margin: 4px 0;
-    background-color: white;
-    border-radius: 4px;
-    font-size: 14px;
-    color: #666;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.userList li:hover {
-    background-color: #f8f9fa;
+    @apply px-4 py-3 my-2 bg-white rounded-lg text-sm text-gray-900 flex justify-between items-center hover:bg-gray-50 transition-colors border-2 border-gray-900;
 }
 
 .chatSection {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    @apply bg-white rounded-xl shadow-md h-full flex flex-col overflow-hidden border-2 border-gray-900;
+}
+
+.contributor {
+    @apply text-sm text-gray-600 mb-4;
 }

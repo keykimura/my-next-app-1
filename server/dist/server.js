@@ -36,9 +36,14 @@ const io = new socket_io_1.Server(server, {
     cors: {
         origin: "http://localhost:3000",
         methods: ["GET", "POST"],
-        credentials: true
+        credentials: true,
+        allowedHeaders: ["Content-Type"]
     },
-    pingTimeout: 60000
+    pingTimeout: 20000,
+    pingInterval: 10000,
+    transports: ['websocket', 'polling'],
+    allowEIO3: true,
+    connectTimeout: 45000
 });
 // ルーム管理
 const rooms = new Map();
@@ -99,6 +104,17 @@ io.on("connection", (socket) => {
         }
     });
     // メッセージ送信
+    // クライアントのping状態を監視
+    let lastPing = Date.now();
+    socket.on("ping", () => {
+        lastPing = Date.now();
+    });
+    const pingInterval = setInterval(() => {
+        const now = Date.now();
+        if (now - lastPing > 25000) {
+            socket.disconnect(true);
+        }
+    }, 10000);
     socket.on("message", async (data) => {
         try {
             const { room: roomName, text, timestamp, userId } = data;
@@ -155,6 +171,7 @@ io.on("connection", (socket) => {
     // 切断時の処理
     socket.on("disconnect", () => {
         console.log(`ユーザー切断: ${socket.id}`);
+        clearInterval(pingInterval);
         // 全ルームからユーザーを削除
         rooms.forEach((room, roomName) => {
             room.users = room.users.filter(user => user.id !== socket.id);

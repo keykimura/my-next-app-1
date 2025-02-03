@@ -1,71 +1,49 @@
 .searchPage {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: white;
-    color: black;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    position: relative;
-    top: 200px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-  
-  .searchBar {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .searchInput {
-    flex: 1;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .genreButton,
-  .addButton {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #2ebf51;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .genreButton:hover,
-  .addButton:hover {
-    background-color: #28a745;
-  }
-  
-  .roomList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .roomItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    background-color: #f9f9f9;
-  }
-  
-  .roomName {
-    font-weight: bold;
-  }
-  
-  .roomCount {
-    color: #666;
-  }
-  
+    @apply max-w-[1400px] mx-auto bg-white shadow-lg rounded-2xl p-8 relative top-[200px] w-[90%]
+           border-2 border-gray-900;
+}
+
+.header {
+    @apply flex justify-between items-center mb-8;
+}
+
+.searchBar {
+    @apply flex gap-4 w-full max-w-3xl;
+}
+
+.searchInput {
+    @apply flex-1 px-6 py-4 text-lg border-2 border-gray-900 rounded-xl shadow-sm 
+           focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none 
+           transition-all;
+}
+
+.genreButton,
+.addButton {
+    @apply px-8 py-4 bg-green-600 text-white text-lg font-semibold rounded-xl 
+           transition-all hover:bg-green-700 hover:shadow-md min-w-[200px]
+           flex items-center justify-center gap-2;
+}
+
+.genreButton:hover,
+.addButton:hover {
+    @apply transform -translate-y-0.5;
+}
+
+.roomList {
+    @apply list-none p-0 space-y-4 mt-8;
+}
+
+.roomItem {
+    @apply flex justify-between items-center p-6 bg-white rounded-xl 
+           border-2 border-gray-900 transition-all hover:border-green-600 
+           hover:shadow-md;
+}
+
+.roomName {
+    @apply text-xl font-semibold text-gray-900;
+}
+
+.roomCount {
+    @apply text-gray-900 bg-white px-4 py-2 rounded-lg border-2 border-gray-900 
+           font-medium text-base;
+}

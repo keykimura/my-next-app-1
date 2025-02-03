@@ -1,89 +1,62 @@
-/*createroom*/
 .container {
-    display: flex;
-    height: 100vh;
-    height: 400px;
-  }
-  
-  .sidebarSpace {
-    flex: 0 0 20%;
-  }
-  
-  .formContainer {
-    flex: 1;
-    display: flex;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 2rem;
-    border-radius: 10px;
-    height: 900px;
-    gap: 50px;
-    position: relative;
-    top: 50px;
-    right: 40px;
-  }
-  
-  .iconSection {
-    flex: 0 0 25%;
-    background-color: #ff9500;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-  }
-  
-  .icon {
-    width: 50px;
-    height: 50px;
-    background-color: #000;
-    margin-bottom: 1rem;
-    border-radius: 50%;
-  }
-  
-  .formSection {
-    flex: 1;
-    padding: 2rem;
-  }
-  
-  .title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .input, .select {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .button {
-    background-color: #28a745;
-    color: white;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+    @apply flex min-h-screen bg-white;
+}
+
+.sidebarSpace {
+    @apply flex-none w-1/5;
+}
+
+.formContainer {
+    @apply flex-1 flex bg-white shadow-lg rounded-2xl mx-8 my-16 relative border-2 border-gray-900;
+}
+
+.iconSection {
+    @apply w-1/4 bg-orange-500 flex flex-col items-center justify-center p-8 rounded-l-2xl;
+}
+
+.icon {
+    @apply w-20 h-20 bg-black rounded-full mb-6 border-2 border-white;
+}
+
+.formSection {
+    @apply flex-1 p-10;
+}
+
+.title {
+    @apply text-3xl font-bold text-gray-900 mb-8;
+}
+
+.form {
+    @apply flex flex-col gap-6;
+}
+
+.input, .select {
+    @apply w-full px-6 py-4 text-lg border-2 border-gray-900 rounded-xl shadow-sm 
+           focus:border-orange-500 focus:ring-2 focus:ring-orange-200 focus:outline-none 
+           transition-all;
+}
+
+.button {
+    @apply w-full px-8 py-4 bg-green-600 text-white text-lg font-semibold rounded-xl 
+           transition-all hover:bg-green-700 hover:shadow-md mt-6 
+           flex items-center justify-center gap-2;
+}
+
 .button:hover {
-    background-color: #218838;
+    @apply transform -translate-y-0.5;
 }
 
 .error {
-    color: #dc3545;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    text-align: center;
+    @apply text-red-600 bg-red-50 border-2 border-red-200 p-4 rounded-xl mb-6 
+           text-center font-medium animate-shake;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
 }

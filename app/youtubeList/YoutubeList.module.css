@@ -1,119 +1,83 @@
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    @apply max-w-[1400px] mx-auto p-8 bg-white min-h-screen;
 }
 
 .title {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
+    @apply text-center text-3xl font-bold text-gray-900 mb-8;
 }
 
 .addSection {
-    margin-bottom: 40px;
+    @apply mb-10;
 }
 
 .form {
-    display: flex;
-    gap: 10px;
+    @apply flex gap-4 items-center;
 }
 
 .input {
-    flex: 1;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
+    @apply flex-1 px-6 py-4 text-lg border-2 border-gray-900 rounded-xl shadow-sm 
+           focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none 
+           transition-all;
 }
 
 .addButton {
-    padding: 12px 24px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    @apply px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-xl 
+           transition-all hover:bg-blue-700 hover:shadow-md min-w-[250px] 
+           flex items-center justify-center gap-2;
 }
 
 .addButton:hover {
-    background-color: #0056b3;
+    @apply transform -translate-y-0.5;
 }
 
 .listSection {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 12px;
+    @apply bg-white p-6 rounded-xl shadow-md border-2 border-gray-900;
 }
 
 .listSection h2 {
-    color: #333;
-    margin-bottom: 20px;
+    @apply text-2xl font-semibold text-gray-900 mb-6;
 }
 
 .videoList {
-    list-style: none;
-    padding: 0;
+    @apply list-none p-0 space-y-4;
 }
 
 .videoItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background-color: white;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    @apply p-6 bg-white rounded-xl border-2 border-gray-900 
+           transition-all hover:border-blue-600 hover:shadow-md;
+}
+
+.videoContent {
+    @apply flex gap-6 items-start;
+}
+
+.videoContent iframe {
+    @apply rounded-lg shadow-md border border-gray-900;
+}
+
+.videoInfo {
+    @apply flex-1 flex flex-col gap-4;
 }
 
 .videoTitle {
-    font-size: 16px;
-    color: #333;
+    @apply text-lg font-medium text-gray-900 mb-2;
 }
 
 .removeButton {
-    padding: 8px 16px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    @apply px-6 py-3 bg-red-500 text-white font-semibold rounded-lg 
+           transition-all hover:bg-red-600 hover:shadow-md min-w-[200px] 
+           flex items-center justify-center gap-2;
 }
 
 .removeButton:hover {
-    background-color: #c82333;
+    @apply transform -translate-y-0.5;
 }
 
 .error {
-    color: #dc3545;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
+    @apply text-red-600 bg-red-50 border-2 border-red-200 p-4 rounded-xl mb-6 
+           text-center font-medium;
 }
 
 .emptyMessage {
-    text-align: center;
-    color: #6c757d;
-    padding: 20px;
-    font-style: italic;
-}
-
-.videoTitle {
-    font-size: 16px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.videoTitle::before {
-    content: '▶';
-    color: #007bff;
-    font-size: 12px;
+    @apply text-gray-600 text-center py-8 italic;
 }

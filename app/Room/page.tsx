@@ -49,22 +49,31 @@ export default function Room() {
     useEffect(() => {
         console.log("WebSocket接続を試行中...");
         const newSocket = io("http://localhost:3001", {
-            transports: ['polling', 'websocket'],
+            transports: ['websocket', 'polling'],
             reconnection: true,
-            reconnectionAttempts: 5,
-            reconnectionDelay: 1000
+            reconnectionAttempts: Infinity,
+            reconnectionDelay: 1000,
+            timeout: 20000,
+            forceNew: true
         });
         console.log("Socket.IOクライアントを初期化しました");
 
         newSocket.on('connect', () => {
             console.log('WebSocket接続成功:', newSocket.id);
             setSocket(newSocket);
+
+            // Pingの送信を開始
+            const pingInterval = setInterval(() => {
+                newSocket.emit('ping');
+            }, 5000);
+
+            // クリーンアップ時にインターバルをクリア
+            return () => clearInterval(pingInterval);
         });
 
         newSocket.on('connect_error', (error) => {
             console.error('WebSocket接続エラー:', error);
             console.log('Pollingトランスポートに切り替えます...');
-            // 接続エラー時にpollingにフォールバック
             newSocket.io.opts.transports = ['polling'];
         });
 
@@ -87,10 +96,8 @@ export default function Room() {
 
         console.log("Setting up socket listeners for room:", room.name);
 
-        // 既存のリスナーをクリア
         socket.removeAllListeners();
         
-        // ルームに参加
         socket.emit("joinRoom", room.name, (error: any) => {
             if (error) {
                 console.error("Error joining room:", error);
@@ -109,37 +116,43 @@ export default function Room() {
         const handleNewMessage = (message: ChatMessage) => {
             console.log("Received new message:", message);
             setMessages(prevMessages => {
-                // 重複を防ぐために既存のメッセージをチェック
+                // より厳密な重複チェック
                 const isDuplicate = prevMessages.some(
-                    msg => msg.timestamp === message.timestamp && msg.userId === message.userId
+                    msg => 
+                        msg.timestamp === message.timestamp && 
+                        msg.userId === message.userId &&
+                        msg.text === message.text
                 );
+                
                 if (isDuplicate) {
+                    console.log("Duplicate message detected, skipping...");
                     return prevMessages;
                 }
+                
+                // 新しいメッセージを即時追加（ソートなし）
                 return [...prevMessages, message];
+            });
+
+            // メッセージ受信確認
+            socket?.emit('messageReceived', {
+                messageTimestamp: message.timestamp,
+                userId: message.userId
             });
         };
 
-        // イベントリスナーを設定
         socket.on("messageHistory", handleMessageHistory);
         socket.on("message", handleNewMessage);
-        socket.on("messageSent", (message: ChatMessage) => {
-            console.log("Message sent confirmation received:", message);
-            setMessages(prevMessages => [...prevMessages, message]);
-        });
         socket.on("error", (error: { message: string }) => {
             console.error("Socket error:", error);
         });
         socket.on("currentVideo", setCurrentVideo);
         socket.on("nowPlaying", (info: {title: string; userId: string | null}) => {
             setNowPlaying(info);
-            // 再生履歴を更新
             setPlayHistory(prev => {
                 const newEntry = {
                     title: info.title,
                     videoId: currentVideo || ''
                 };
-                // 重複を防ぐ
                 const isExisting = prev.some(entry => 
                     entry.videoId === newEntry.videoId && entry.title === newEntry.title
                 );
@@ -153,7 +166,6 @@ export default function Room() {
         });
         socket.on("updateRoomUsers", setRoomUsers);
 
-        // 接続状態の監視
         socket.on("connect", () => {
             console.log("Socket reconnected");
             if (room?.name) {
@@ -171,7 +183,6 @@ export default function Room() {
             console.log("Socket disconnected");
         });
 
-        // クリーンアップ関数
         return () => {
             console.log("Cleaning up socket listeners");
             socket.emit("leaveRoom", room.name);
@@ -179,7 +190,6 @@ export default function Room() {
         };
     }, [room?.name, socket]);
 
-    // youtubeLinksが更新されたときに自動再生を試みる
     useEffect(() => {
         if (youtubeLinks.length > 0 && !currentVideo) {
             handleRandomVideo(youtubeLinks);
@@ -211,7 +221,6 @@ export default function Room() {
     const handleRandomVideo = (availableVideos: YoutubeLink[]) => {
         if (!room?.name) return;
 
-        // 利用可能な動画リストを結合
         const allVideos = [
             ...availableVideos,
             ...roomUsers.reduce((acc, user) => [...acc, ...user.youtubeLinks], [] as YoutubeLink[])
@@ -227,7 +236,6 @@ export default function Room() {
                 userId: null
             });
 
-            // 再生履歴を更新
             const newHistoryEntry = {
                 title: randomVideo.title,
                 videoId: randomVideo.videoId
@@ -258,7 +266,6 @@ export default function Room() {
             console.log("Attempting to send message:", message);
             const timestamp = new Date().toISOString();
             
-            // メッセージをサーバーに送信
             socket.emit("message", {
                 room: room.name,
                 text: message.trim(),
@@ -281,11 +288,12 @@ export default function Room() {
         width: '640',
         playerVars: {
             autoplay: 1,
-            controls: 1, // コントロールを表示
-            disablekb: 0, // キーボード操作を有効化
+            controls: 1,
+            disablekb: 0,
             rel: 0,
             modestbranding: 1,
-            fs: 1, // フルスクリーンを有効化
+            fs: 1,
+            origin: window.location.origin
         },
     };
 
@@ -344,14 +352,25 @@ export default function Room() {
                                 <ul className={styles.history}>
                                     {playHistory.map((video, index) => (
                                         <li key={index} className={styles.historyItem}>
-                                            <a 
-                                                href={`https://www.youtube.com/watch?v=${video.videoId}`}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={styles.videoLink}
-                                            >
-                                                {video.title}
-                                            </a>
+                                            <div className={styles.historyVideo}>
+                                                <iframe
+                                                    width="160"
+                                                    height="90"
+                                                    src={`https://www.youtube.com/embed/${video.videoId}?origin=${window.location.origin}`}
+                                                    title={video.title}
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    allowFullScreen
+                                                />
+                                                <a 
+                                                    href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={styles.videoLink}
+                                                >
+                                                    {video.title}
+                                                </a>
+                                            </div>
                                         </li>
                                     ))}
                                 </ul>
